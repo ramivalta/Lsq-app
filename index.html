@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css" />
+
+  	<link rel="stylesheet" href="app_styles.css" type="text/css" media="screen" rel="stylesheet" />
+
+	<script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<!--	<script src="http://code.jquery.com/mobile/1.4.0-alpha.2/jquery.mobile-1.4.0-alpha.2.min.js"></script> -->
+	
+	<script src="https://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script>
+	<script src="knockout-2.3.0.js"></script>
+	<link rel="stylesheet" href="jquery-ui-1.10.3.custom.min.css"> 
+	
+	<script src="jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="jquery.ui.touch-punch.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, minimum-scale=0.5, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" /> 
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />  
+	
+	<meta name="apple-mobile-web-app-title" content="squash app" >
+
+
+	<script type="application/javascript" src="iscroll.js"></script>
+<!--	<script type="text/javascript">
+	var myScroll;
+	function loaded() {
+		setTimeout(function () {
+			myScroll = new iScroll('scroller');
+		}, 100);
+	}
+	window.addEventListener('load', loaded, false);
+	</script> -->
+
+	<script src="app.js"></script>
+	<script type="text/javascript">
+		$.mobile.changePage.defaults.allowSamePageTransition = true;
+		$.mobile.loader.prototype.options.theme = "b";
+		$.mobile.loader.prototype.options.textVisible = false;
+	</script>
+
+</head>
+
+<body>
+	<div id="main" data-role="page" data-title="squash app">
+		<div class="ui-grid-b" id="top">
+			<div class="ui-block-a">
+				<div id="moooo" style="width: 80px; height: 44px" data-bind="event: { click: undo }">
+				<a href="#" data-role="button" data-inline="true" data-mini="true" data-theme="b" style="float: left" id="peru">Peru</a>
+				</div>
+			</div>
+			
+			<div class="ui-block-b">
+				<div id="doomings" style="height: 44px; width: 120px; margin: auto" data-bind="event: { click: openCallsPopup }">
+					<a href="" data-role="button" data-inline="true" data-mini="true" data-theme="a" data-icon="arrow-d" data-iconpos="right"  id="tuomiot" class="dialogBtn">Tuomiot</a>				
+				</div>
+			</div>
+
+			<div class="ui-block-c">
+				<div id="apop" data-bind="event: { click: openOptionsPopup }" style="height: 44px; float: right; margin-left: 40px">
+					<a href="" data-role="button" data-inline="true" data-mini="true"  data-theme="b" id="asetukset" class="dialogBtn">Asetukset</a>
+				</div>
+			</div>
+
+
+		</div>
+		
+		<div data-role="content" data-theme="d" id="scroller">
+			<div style="padding-bottom: 1px; padding-top: 0px" id="foo">
+				<table id="scoreBoard"> 
+<!--				<thead>
+					<tr>
+						<th data-bind="text: playerOne"></th>
+						<th>vs.</th>
+						<th data-bind="text: playerTwo"></th>
+						<th class="scoreCell">&nbsp;</th>
+						<th class="scoreCell">&nbsp;</th>
+						<th class="scoreCell">&nbsp;</th>
+					</tr>
+				</thead> -->
+	
+				<tbody data-bind="foreach: scoreBoard">
+					<tr>
+					<!-- ko if: ($index() === ($root.scoreBoard().length - 1)) -->
+						<!-- ko if: $root.matchSet === true -->
+							<td class="scoreCell scoreCellGameOver"></td>							
+							
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>							
+
+							<td class="scoreCell scoreCellGames scoreCellGameOver">(
+									<span data-bind="text: playerOneGamesWon"></span>
+									-
+									<span data-bind="text: playerTwoGamesWon"></span> )
+							</td>
+							
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>
+							
+							<td class="scoreCell scoreCellGameOver">
+							</td>
+							
+						<!-- /ko -->
+						
+						<!-- ko if: gameOver() === true -->
+							<td class="scoreCell scoreCellGameOver scoreCellCall">
+								<!-- ko if: playerOneYesLet() === true -->
+									<div>Yes let</div>
+								<!-- /ko -->
+								<!-- ko if: playerOneNoLet() === true -->									
+									<div>No let</div>
+								<!-- /ko -->
+								<!-- ko if: playerOneStroke() === true -->									
+									<div>Stroke</div>
+								<!-- /ko -->							
+							</td>							
+							
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>							
+
+							<td class="scoreCell scoreCellGames scoreCellGameOver">(
+								<span data-bind="text: playerOneGamesWon"></span>
+								-
+								<span data-bind="text: playerTwoGamesWon"></span> )
+							</td>
+							
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>							
+							
+							<td class="scoreCell scoreCellGameOver scoreCellCall">
+								<!-- ko if: playerTwoYesLet() === true -->
+									<div>Yes let</div>
+								<!-- /ko -->
+								<!-- ko if: playerTwoNoLet() === true -->									
+									<div>No let</div>
+								<!-- /ko -->
+								<!-- ko if: playerTwoStroke() === true -->									
+									<div>Stroke</div>
+								<!-- /ko -->									
+							
+							</td>							
+						<!-- /ko -->
+							
+						<!-- ko if: gameOver() === false -->
+						
+							<!-- ko if: gameBall() === true -->
+
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall scoreCellCall">
+
+									<!-- ko if: playerOneYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->
+								</td>
+								
+								<td class="scoreCell scoreCellLatest scoreCellGameBall" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>								
+									
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall">
+									-
+								</td>	
+								
+								<td class="scoreCell scoreCellLatest scoreCellGameBall" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>								
+								
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall scoreCellCall">
+									<!-- ko if: playerTwoYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->										
+								
+								</td>
+
+							<!-- /ko -->
+
+							<!-- ko if: gameBall() === false -->
+								
+								<td class="scoreCell scoreCellLatest scoreCellCall">
+									<!-- ko if: playerOneYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->
+								</td>
+
+								<td class="scoreCell scoreCellLatest" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>
+				
+								<td class="scoreCell scoreCellGames scoreCallLatest">
+									-
+								</td>									
+								
+								<td class="scoreCell scoreCellLatest" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>								
+								
+								<td class="scoreCell scoreCellLatest scoreCellCall">
+									<!-- ko if: playerTwoYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->										
+								</td>								
+									
+							<!-- /ko -->
+						<!-- /ko -->
+					<!-- /ko -->
+						
+					<!-- ko if: ($index() !== ($root.scoreBoard().length -1)) -->
+						<!-- ko if: gameOver() === true -->
+							
+							<td class="scoreCell scoreCellLatest scoreCellGameOver scoreCellCall">
+								<!-- ko if: playerOneYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->
+							</td>							
+
+							<td class="scoreCell scoreCellLatest scoreCellGameOver" data-bind="text: playerOneScore" style="text-align: center"></td>
+		
+							<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameOver">
+								( <span data-bind="text: playerOneGamesWon"></span>
+									-
+								<span data-bind="text: playerTwoGamesWon"></span> )
+							</td>
+
+							<td class="scoreCell scoreCellLatest scoreCellGameOver" data-bind="text: playerTwoScore" style="text-align: center"></td>
+							
+							<td class="scoreCell scoreCellLatest scoreCellGameOver scoreCellCall">
+									<!-- ko if: playerTwoYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->									
+							</td>							
+
+						<!-- /ko -->
+							
+						<!-- ko if: gameOver() === false -->
+							<!-- ko if: gameBall() === true -->
+								
+								<td class="scoreCell scoreCellGameBall scoreCellCall">
+								<!-- ko if: playerOneYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->
+								</td>								
+
+								<td class="scoreCell scoreCellGameBall" data-bind="text: playerOneScore" style="text-align: center"></td>
+
+								<td class="scoreCell scoreCellGames scoreCellGameBall"> -
+								</td>					
+
+								<td class="scoreCell scoreCellGameBall" data-bind="text: playerTwoScore" style="text-align: center"></td>
+
+								<td class="scoreCell scoreCellGameBall scoreCellCall">
+								
+									<!-- ko if: playerTwoYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->										
+								</td>
+
+							<!-- /ko -->
+							
+							<!-- ko if: gameBall() === false -->
+								
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall ">
+
+									<!-- ko if: playerOneYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerOneStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->
+								</td>	
+								
+								<td class="scoreCell" data-bind="text: playerOneScore" style="text-align: center"></td>
+									
+								<td class="scoreCell scoreCellGames"> -
+								</td>					
+
+								<td class="scoreCell" data-bind="text: playerTwoScore" style="text-align: center"></td>
+								
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall">
+
+									<!-- ko if: playerTwoYesLet() === true -->
+										<div>Yes let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoNoLet() === true -->									
+										<div>No let</div>
+									<!-- /ko -->
+									<!-- ko if: playerTwoStroke() === true -->									
+										<div>Stroke</div>
+									<!-- /ko -->								
+								
+								</td>	
+						
+							<!-- /ko -->
+						<!-- /ko -->
+						
+					<!-- /ko -->
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+		<div data-role="popup" id="calls" data-theme="a" style="width: 275px">
+			<div data-role="content">
+				<div class="ui-grid-b">
+					<div class="ui-block-a">
+						<a href="" data-mini="true" data-role="button" data-bind="click: $root.playerOneUpScore.bind($data, 'yeslet')">Yes let</a>
+						<a href="" data-mini="true" data-role="button" data-bind="click: $root.playerOneUpScore.bind($data, 'nolet')">No let</a>
+						<a href="" data-mini="true" data-role="button" data-bind="click: $root.playerOneUpScore.bind($data, 'stroke')">Stroke</a>
+					</div>
+					
+					<div class="ui-block-b">
+					
+					</div>
+				
+					<div class="ui-block-c">
+						<a href="" data-mini="true" data-role="button" data-bind="click: $root.playerTwoUpScore.bind($data, 'yeslet')">Yes let</a>
+						<a href="" data-mini="true" data-role="button" data-bind="click: $root.playerTwoUpScore.bind($data, 'nolet')">No let</a>
+						<a href="" data-mini="true" data-role="button" data-bind="click: $root.playerTwoUpScore.bind($data, 'stroke')">Stroke</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	
+		<div data-role="popup" id="playerNames" data-theme="b" data-overlay-theme="a" style="width: 255px">
+			<form>
+				<div style="padding: 5px; padding-bottom: 2px">
+					<div class="ui-grid-a">
+						<div class="ui-block-a" style="padding: 5px">
+							<b>Pelaaja #1:</b>
+					
+							<label for="playerOne" class="ui-hidden-accessible">Player name:</label>
+							<input type="text" name="playerOne" id="nameOne" data-bind="value: playerOne" data-theme="b">
+						</div>
+						<div class="ui-block-b" style="padding: 5px">
+							<b>Pelaaja #2:</b>
+					
+							<label for="playerTwo" class="ui-hidden-accessible">Player name:</label>
+							<input type="text" name="playerTwo" id="nameTwo" data-bind="value: playerTwo" data-theme="b">
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+		
+		<div data-role="popup" id="options" data-theme="a" style="width: 100%">
+			<div data-role="content" style="text-align: center">
+				<div style="padding: 2px">
+					Pelataan paras:
+				</div>
+				<form>
+					<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<input type="radio" name="bestOf" id="bestOf3" value="3" data-bind="checked: bestOf, mobileradio: bestOf" >
+							<label for="bestOf3" style="border-radius: 2px">Kolmesta</label>
+							<input type="radio" name="bestOf" id="bestOf5" value="5" checked="checked" data-bind="checked: bestOf, mobileradio: bestOf">
+							<label for="bestOf5" style="border-radius: 2px">Viidest&auml; </label>
+							
+					</fieldset>
+					<div>
+						<div class="ui-grid-a">
+							<div class="ui-block-a" style="padding: 5px">
+								<label for="playerOne">Pelaaja #1:</label>
+								<input type="text" name="playerOne" id="nameOne" data-bind="value: playerOne" data-theme="b"  style="border-radius: 2px; font-size: 14px">
+							</div>
+							<div class="ui-block-b" style="padding: 5px">
+								<label for="playerTwo" style="border-radius: 2px">Pelaaja #2:</label>
+								<input type="text" name="playerTwo" id="nameTwo" data-bind="value: playerTwo" data-theme="b" style="border-radius: 2px; font-size: 14px">
+							</div>
+						</div>
+					</div>				
+				</form>
+				
+				<a href="" data-role="button" data-inline="true" data-mini="true" data-theme="e" data-bind="click: resetScore">Nollaa pisteet</a>
+				
+			</div>
+		</div>
+		
+	
+		<div id="scoreBar" class="ui-grid-b" data-role="content" data-theme="b" style="height: 24px; position: absolute; bottom: 60px; width: 100%; padding-top: 6px; padding-bottom: 6px; padding-left: 0px; padding-right: 0px">
+			<div class="ui-block-a" style="width: 40%; text-align: center">
+<!--				<a href="#playerNames" data-rel="popup" data-position-to="window" data-transition="pop"> -->
+					<span data-bind="text: playerOne" style="font-size: 14px; font-weight: bold"></span>
+				</a>
+			</div>
+			<div class="ui-block-b" style="width: 20%; text-align: center">
+				<span style="font-size: 14px">
+					( <span data-bind="text: playerOneGamesWon"></span>
+					 -
+					 <span data-bind="text:playerTwoGamesWon"></span> )
+				</span>
+				<div style="margin-top: 10px"></div>
+			</div>
+			<div class="ui-block-c" style="width: 40%; text-align: center">
+<!--				<a href="#playerNames" data-rel="popup" data-position-to="window" data-transition="pop"> -->
+					<span data-bind="text: playerTwo" style="font-size: 14px; font-weight: bold"></span>
+				</a>
+			</div>
+		</div>
+	
+		<div class="ui-grid-a" data-role="content" data-theme="a" id="slaidiDiv">
+			<div class="ui-block-a" style="width: 50%; padding-left: 20px; padding-right: 20px">
+
+				<div class="sliderW">
+					<div data-bind="value: playerOneSlider, uislider: playerOneSlider, event: { slide: playerOneSliderMove, slidestop: resetSlider }, sliderOptions: { value: 0, min: 0, max: 50, step: 1, animate: 'true' }" name="slider" class="slaidi" min="0" max="50" >
+					</div>
+				</div>
+			</div>
+
+			<div class="ui-block-b" style="width: 50%; padding-left: 20px; padding-right: 20px">
+
+				<div class="sliderW">
+					<div data-bind="value: playerTwoSlider, uislider: playerTwoSlider, event: { slide: playerTwoSliderMove, slidestop: resetSlider }, sliderOptions: { value: 0, min: 0, max: 50, step: 1, animate: 'true' }" name="slider" class="slaidi" min="0" max="50" >
+					</div>
+				</div>			
+			</div>
+		</div>
+	
+	
+	
+	
+<!--
+	<div class="ui-grid-a" id="slaidiDiv" data-role="content" data-theme="a">
+		<div class="ui-block-a">
+			<div class="sliderW">
+				<div data-bind="value: playerOneSlider, uislider: playerOneSlider, event: { slide: playerOneSliderMove, slidestop: resetSlider }, sliderOptions: { value: 0, min: 0, max: 50, step: 1, animate: 'false' }" name="slider" class="slaidi" min="0" max="50" >
+				</div>
+			</div>
+		</div>
+		<div class="ui-block-b">
+			<div class="sliderW">
+				<div data-bind="value: playerTwoSlider, uislider: playerTwoSlider, event: { slide: playerTwoSliderMove, slidestop: resetSlider }, sliderOptions: { value: 0, min: 0, max: 50, step: 1, animate: 'false' }" name="slider" class="slaidi" min="0" max="50" >
+				</div>
+			</div>
+		</div>
+	</div> -->
+</body>

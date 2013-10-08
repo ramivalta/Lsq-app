@@ -1,0 +1,338 @@
+.ui-page.ui-body-c  {
+//	background: url('img/wild_oliva.png') !important;
+//	background: black;
+//	background-color: black;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+} 
+
+html, body {
+	height: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	-webkit-user-select: none;
+}
+
+//a {
+//	-webkit-touch-callout: none !important; // pitäis estää longtap-menu ios-laitteilla, mutta ei tunne toimivan?
+//}
+
+body {
+	margin: 0;
+	padding: 0;
+//	position: fixed;
+//	max-width: 800px;
+	width: 100%;
+//	background: url('img/wild_oliva.png') !important;
+//	background-color: black;
+//	background: black;
+	overflow: hidden;
+
+}
+
+
+
+#main {
+	position: fixed;
+	height: 100%;
+}
+
+#top {
+	position: absolute;
+	height: 44px;
+	width: 100%;
+	top: -1px;
+	left: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	margin: 0px;
+	
+background: -moz-linear-gradient(top,  rgba(0,0,0,1) 0%, rgba(79,79,79,1) 98%, rgba(124,124,124,0.8) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,1)), color-stop(98%,rgba(79,79,79,1)), color-stop(100%,rgba(124,124,124,0.8))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(79,79,79,1) 98%,rgba(124,124,124,0.8) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(79,79,79,1) 98%,rgba(124,124,124,0.8) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(0,0,0,1) 0%,rgba(79,79,79,1) 98%,rgba(124,124,124,0.8) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(0,0,0,1) 0%,rgba(79,79,79,1) 98%,rgba(124,124,124,0.8) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#cc7c7c7c',GradientType=0 ); /* IE6-9 */
+
+	text-align: center;
+}
+
+* .ui-input-text {
+	border-radius: 2px;
+}
+
+* .ui-btn {
+	border-radius: 2px;
+}
+
+#peru {
+//	margin: 0px !important;
+//	padding-left: 2px !important;
+//	padding-right: 2px !important;
+	top: 2px !important;
+//	height: 24px;
+//	border-radius: 2px;
+}
+
+#asetukset {
+	top: 2px;
+}
+
+#top .ui-btn-inner {
+
+}
+
+.dialogBtn {
+//	margin: 0px !important;
+//	padding-left: 2px !important;
+//	padding-right: 2px !important;
+	top: 0px !important;
+//	height: 24px;
+	height: 44px;
+//	border-radius: 2px;
+	background: transparent;
+	border-color: transparent;
+	box-shadow: none;
+	padding: 0px;
+	border: 0px;
+	margin: 0px;
+}
+
+.dialogBtn .ui-btn-inner { margin-top: 6px; border: 0px }
+
+.dialogBtn .ui-icon {
+	background-color: rgba(0,0,0,0.0);
+	box-shadow: none;
+}
+
+#calls {
+	opacity: 0.9;
+}
+
+#options {
+	opacity: 0.9;
+}
+
+
+#scroller {
+	position: absolute;
+	top: 44px;
+	bottom: 96px;
+//	width: 100%;
+	padding-bottom: 15px;
+	left: 0px;
+	right: 0px;
+	margin-top: 0px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-left: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+#foo {
+	min-height: 100%;
+}
+
+#scoreBoard {
+/*	border: 0px;
+	border-width: 0px;
+	border-style: solid;
+	border-color: black; */
+	border-collapse: collapse;
+	width: 100%;
+	max-width: 100%;
+	padding: 0px;
+	padding-top: 0px;
+	margin-top: 0px;
+	font-size: 13px;
+}
+
+.scoreCellCall {
+	font-size: 80% !important;
+	text-align: center !important;	
+	width: 20%;
+}
+
+.scoreCell {
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+
+	border-top-width: 1px;
+	border-top-color: #ccc;
+	border-top-style: solid;
+	width: 20%;
+}
+
+.scoreCellGames {
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+
+	border-top-width: 1px;
+	border-top-color: #ccc;
+	border-top-style: solid;
+	width: 20%;
+	text-align: center;
+//	font-size: 75% !important;
+}
+
+
+
+.scoreCellLatest {
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+
+	border-top-width: 1px;
+	border-top-color: #ccc;
+	border-top-style: solid;
+	
+/*	border-bottom-width: 1px;
+	border-bottom-color: #ccc;
+	border-bottom-style: dashed; */
+	
+	font-size: 130%;
+	width: 20%;	
+}
+
+
+.scoreCellGameBall {
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+
+	border-top-width: 1px;
+	border-top-color: #ccc;
+	border-top-style: solid;
+	
+	border-bottom-width: 1px;
+	border-bottom-color: #777;
+	border-top-style: solid;
+	
+//	background-color: #C2E0FF;
+	width: 20%;
+	
+	background: rgb(233,244,253); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(233,244,253,1) 0%, rgba(186,208,228,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(233,244,253,1)), color-stop(100%,rgba(186,208,228,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(233,244,253,1) 0%,rgba(186,208,228,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(233,244,253,1) 0%,rgba(186,208,228,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(233,244,253,1) 0%,rgba(186,208,228,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(233,244,253,1) 0%,rgba(186,208,228,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9f4fd', endColorstr='#bad0e4',GradientType=0 ); /* IE6-9 */
+}
+
+.scoreCellGameOver {
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+
+	border-top-width: 1px;
+	border-top-color: #aaa;
+	border-top-style: solid;
+
+	border-bottom-width: 1px;
+	border-bottom-color: #777;
+	border-bottom-style: solid;
+	
+	font-size: 130%;
+	width: 20%;
+	
+	background: rgb(225,234,241); /* Old browsers */
+	background: -moz-linear-gradient(top,  rgba(225,234,241,1) 0%, rgba(152,167,174,1) 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(225,234,241,1)), color-stop(100%,rgba(152,167,174,1))); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  rgba(225,234,241,1) 0%,rgba(152,167,174,1) 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  rgba(225,234,241,1) 0%,rgba(152,167,174,1) 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  rgba(225,234,241,1) 0%,rgba(152,167,174,1) 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  rgba(225,234,241,1) 0%,rgba(152,167,174,1) 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1eaf1', endColorstr='#98a7ae',GradientType=0 ); /* IE6-9 */
+}
+
+
+.sliderW {
+//	margin: auto;
+	height: 9px;
+	border: 1px;
+	border-style: outset;
+	border-color: #222;
+	border-radius: 10px;
+	background: silver;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 0px;
+//	width: 70%;
+	padding-left: 10px;
+	padding-right: 10px;
+/*	margin-right: 0px;
+	margin-left: 0px; */
+	margin-top: 10px;
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
+	
+}
+
+
+.slaidi {
+//	margin: auto;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+	height: 8px;
+//	padding: auto;
+	padding: 0px !important;
+/*	margin-left: 40px;
+	margin-right: 40px; */
+}
+
+#slaidiDiv {
+	width: 100%;
+	height: 40px;
+	position: absolute;
+//	padding: 0px;
+	padding-bottom: 10px !important;
+	padding-top: 10px !important;
+	padding-right: 0px;
+	padding-left: 0px;
+	bottom: 0px !important;
+//	bottom: 0px;
+	margin-bottom: 0px !important;
+	text-align: center;
+	margin-left: 0px;
+	margin-right: 0px;
+
+}
+
+.ui-slider .ui-slider-handle {
+	width: 125px !important; 
+	height: 70px !important; 
+	outline: none;
+	border-radius: 0px !important;
+	border: 0px;
+	background:url('handle_b.png');
+//	background: blue;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	margin-left: -60px !important;
+	margin-top: -30px !important;
+	margin-bottom: 0px !important;
+}
+
+.ui-slider .ui-slider-handle .ui-btn-inner {
+	border: 0px;
+	background: transparent;
+	padding: 0px;
+}
+
+.ui-slider-track {
+//	width: 33%;
+	margin-left: 0px;
+//	background: transparent;
+	border:0px;
+}
