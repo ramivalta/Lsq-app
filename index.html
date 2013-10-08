@@ -182,7 +182,7 @@
 
 							<!-- ko if: gameBall() === false -->
 								
-								<td class="scoreCell scoreCellLatest scoreCellCall">
+								<td class="scoreCell scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) }">
 									<!-- ko if: playerOneYesLet() === true -->
 										<div>Yes let</div>
 									<!-- /ko -->
@@ -194,15 +194,15 @@
 									<!-- /ko -->
 								</td>
 
-								<td class="scoreCell scoreCellLatest" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>
+								<td class="scoreCell scoreCellLatest" data-bind="text: playerOneScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center; font-size: 150%"></td>
 				
-								<td class="scoreCell scoreCellGames scoreCallLatest">
+								<td class="scoreCell scoreCellGames scoreCallLatest" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) }">
 									-
 								</td>									
 								
-								<td class="scoreCell scoreCellLatest" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>								
+								<td class="scoreCell scoreCellLatest" data-bind="text: playerTwoScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center; font-size: 150%"></td>								
 								
-								<td class="scoreCell scoreCellLatest scoreCellCall">
+								<td class="scoreCell scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) }">
 									<!-- ko if: playerTwoYesLet() === true -->
 										<div>Yes let</div>
 									<!-- /ko -->
@@ -296,7 +296,7 @@
 							
 							<!-- ko if: gameBall() === false -->
 								
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall ">
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) } " >
 
 									<!-- ko if: playerOneYesLet() === true -->
 										<div>Yes let</div>
@@ -309,14 +309,14 @@
 									<!-- /ko -->
 								</td>	
 								
-								<td class="scoreCell" data-bind="text: playerOneScore" style="text-align: center"></td>
+								<td class="scoreCell" data-bind="text: playerOneScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center"></td>
 									
-								<td class="scoreCell scoreCellGames"> -
+								<td class="scoreCell scoreCellGames" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) } "> -
 								</td>					
 
-								<td class="scoreCell" data-bind="text: playerTwoScore" style="text-align: center"></td>
+								<td class="scoreCell" data-bind="text: playerTwoScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center"></td>
 								
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall">
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) } ">
 
 									<!-- ko if: playerTwoYesLet() === true -->
 										<div>Yes let</div>

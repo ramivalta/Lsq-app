@@ -70,7 +70,7 @@ function viewModel () {
 			self.closeCallsPopup();
 		}
 	
-		console.log(tuomio);
+//		console.log(tuomio);
 	
 		var yeslet = false;
 		var nolet = false;		
@@ -161,7 +161,7 @@ function viewModel () {
 		el.gameBall = ko.observable(false);
 		el.gameOver = ko.observable(false);
 		
-		console.log(el.playerOneYesLet());
+//		console.log(el.playerOneYesLet());
 			
 		if (self.gameBall() === true)  el.gameBall(true);
 				
@@ -340,7 +340,7 @@ function viewModel () {
 //						self.myScroll['main'].scrollTo(0, 23, 50, true);
 				var wrapH = $("#scroller").height();
 				var y = self.myScroll['main'].maxScrollY;
-				console.log("computed refresh");
+//				console.log("computed refresh");
 						
 				if (y < 0) {
 					self.myScroll['main'].scrollTo(0, self.myScroll['main'].maxScrollY, 350);
@@ -393,7 +393,7 @@ function viewModel () {
 		
 		if ((p1 === 10 && p2 < 10) || (p2 === 10 && p1 < 10)) {
 			var x = Math.abs(p1 - p2);
-			console.log("game ball: p1: " + p1 + " p2: " + p2 + " ero: " + x);
+//			console.log("game ball: p1: " + p1 + " p2: " + p2 + " ero: " + x);
 			if (x >= 1) {
 				return true;
 			}
@@ -402,7 +402,7 @@ function viewModel () {
 		
 		else if (p1 >= 10 && p2 >= 10) {
 			var y = Math.abs(p1 - p2);
-			console.log("asasd " + y);
+//			console.log("asasd " + y);
 			if (y >= 1) {
 				return true;
 			}

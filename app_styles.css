@@ -183,6 +183,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 }
 
 
+.scoreCellOdd {
+	border-width: 0px;
+	border-style: solid;
+	border-color: black;
+
+	border-top-width: 1px;
+	border-top-color: #ccc;
+	border-top-style: solid;
+	width: 20%;
+	text-align: center;
+	background-color: #eee;
+}
 
 .scoreCellLatest {
 	border-width: 0px;
@@ -253,7 +265,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	background: linear-gradient(to bottom,  rgba(225,234,241,1) 0%,rgba(152,167,174,1) 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1eaf1', endColorstr='#98a7ae',GradientType=0 ); /* IE6-9 */
 }
-
 
 .sliderW {
 //	margin: auto;
