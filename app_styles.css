@@ -194,6 +194,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	width: 20%;
 	text-align: center;
 	background-color: #eee;
+	border-bottom-width: 1px !important;
+	border-bottom-color: #ccc !important;
+	border-bottom-style: solid !important;
 }
 
 .scoreCellLatest {
