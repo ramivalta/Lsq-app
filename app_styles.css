@@ -63,10 +63,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 
 * .ui-input-text {
 	border-radius: 2px;
+	font-weight: 300;	
 }
 
 * .ui-btn {
 	border-radius: 2px;
+	font-weight: 300;
 }
 
 #peru {
@@ -207,6 +209,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', end
 	border-top-width: 1px;
 	border-top-color: #ccc;
 	border-top-style: solid;
+    
+    border-bottom-width: 1px !important;
+    border-bottom-color: #ccc !important;
+    border-bottom-style: solid !important;
 	
 /*	border-bottom-width: 1px;
 	border-bottom-color: #ccc;
