@@ -363,8 +363,6 @@ function viewModel () {
 
 	self.playerTwoSliderMove = function () {
 		if (sliderMoved == false) {
-
-			
 			var sVal = parseInt(self.playerTwoSlider(), 10);
 			
 			if (sVal <50 && sVal >= 20){
@@ -375,9 +373,12 @@ function viewModel () {
 	}	
 	
 	self.resetSlider = function() {
+		var p1sl = self.playerOneSlider();
+		var p2sl = self.playerTwoSlider();
 		self.playerOneSlider = ko.observable(0);
 		self.playerTwoSlider = ko.observable(0);
-		$(".slaidi").slider('option', 'value', 0); 
+		$(".ui-slider-handle").animate( { left: 0, easing: 'swing' }, 150);
+		
 		sliderMoved = false;
 	}
 	
@@ -560,30 +561,54 @@ function viewModel () {
 			ko.utils.registerEventHandler(element, "slidechange", function (event, ui) {
 				var observable = valueAccessor();
 				observable(ui.value);
+				//console.log("slidechanged");
+				
 			});
 			ko.utils.domNodeDisposal.addDisposeCallback(element, function () {
 				$(element).slider("destroy");
 			});
 			ko.utils.registerEventHandler(element, "slide", function (event, ui) {
+				//console.log("slide event fired");
 				var observable = valueAccessor();
 				observable(ui.value);
+				var value = ko.unwrap(observable);
+				$(element).slider('value', value);
 			});
 			
 			ko.utils.registerEventHandler(element, "slidestop", function (event, ui) {
+				//console.log("slider stopped");
 				var observable = valueAccessor();
 				observable(ui.value);
 			});
+
+			/* var obs  = valueAccessor();
+			var value = ko.unwrap(obs);
 			
+			console.log(obs);
+			
+			console.log(value);
+			
+			obs.subscribe(function(value) {
+				if (isNaN(value)) value = 0;
+				console.log("herpderp");
+				$(element).slider('option', 'value', value);
+				obs(value);
+			}); */
 		},
-		update: function (element, valueAccessor) {
+		/*update: function (element, valueAccessor) {
 			var value = ko.utils.unwrapObservable(valueAccessor());
+			console.log(value);			
 			if (isNaN(value)) {
-				value = 0;
+				console.log("slider was Nan");
+				//value = 0;
 			}
 			
+			valueUn.subscribe(function(valueUn) {
+				$(element).slider('option', 'value', valueUn.value); 		
+			});
 			
-			$(element).slider("value", value);
-		}
+			//$(element).slider("value", value);
+		} */
 	};
 	
 	ko.bindingHandlers.fadeVisible = {
