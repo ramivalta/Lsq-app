@@ -18,6 +18,21 @@ function viewModel () {
 	
 	self.currentGameNumber = ko.observable(1);
 	
+	self.launchedFromHome = ko.observable();
+	
+	self.launchedFromHomeF = function() {
+		//var x = (window.navigator.standalone) ? true : false;
+		if (window.navigator.standalone == true) {
+			self.launchedFromHome(true);	
+			$('#top').css('height', '66px');
+			//$('#top').css('height', '44px');
+			$('#scrollpad').css('height', '66px');
+		} 
+		else self.launchedFromHome(false);
+	};
+	
+	self.launchedFromHomeF();
+	
 	self.bestOf = ko.observable("5");
 	
 /*	var el = {
