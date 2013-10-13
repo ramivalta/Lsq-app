@@ -5,7 +5,7 @@ return ((this%n)+n)%n;
 function viewModel () {
 	var self = this;
 	
-	self.playerOne = ko.observable("Pelaaja 1");
+	self.playerOne = ko.observable("Rami Valta");
 	self.playerTwo = ko.observable("Pelaaja 2");
 	self.playerOneScore = ko.observable(0);
 	self.playerTwoScore = ko.observable(0);
@@ -26,7 +26,8 @@ function viewModel () {
 			self.launchedFromHome(true);	
 			$('#top').css('height', '66px');
 			//$('#top').css('height', '44px');
-			$('#scrollpad').css('height', '66px');
+			$('#scrollPad').css('height', '66px');
+			$('#tuom').css('top', '65px')
 		} 
 		else self.launchedFromHome(false);
 	};
@@ -194,13 +195,12 @@ function viewModel () {
 			el.playerTwoScore(p2score);
 			el.gameOver(true);
 			
-			
 		}
 		
 		if (self.gameSet() === "p2") {
 			var games = {};
-			games.p1score = self.playerOneScore();
-			games.p2score = self.playerTwoScore();
+			games.p1score = ko.observable(self.playerOneScore());
+			games.p2score = ko.observable(self.playerTwoScore());
 			self.gameScores.push(games);			
 //			self.playerTwoGamesWon(self.playerTwoGamesWon() + 1);
 			el.playerTwoGamesWon(self.playerTwoGamesWon() + 1);			
@@ -210,6 +210,7 @@ function viewModel () {
 			el.playerOneScore(score);
 			el.playerTwoScore(p2score);
 			el.gameOver(true);
+			
 		}
 		
 
@@ -320,6 +321,10 @@ function viewModel () {
 			el.gameBall(true);
 		
 		if (self.gameSet() === "p1") {
+			var games = {};
+			games.p1score = self.playerOneScore();
+			games.p2score = self.playerTwoScore();
+			self.gameScores.push(games);
 //			self.playerOneGamesWon(self.playerOneGamesWon() + 1);
 			el.playerOneGamesWon(self.playerOneGamesWon() + 1);
 			el.playerTwoGamesWon(self.playerTwoGamesWon());
@@ -332,8 +337,12 @@ function viewModel () {
 		}
 		
 		if (self.gameSet() === "p2") {
+			var games = {};
+			games.p1score = self.playerOneScore();
+			games.p2score = self.playerTwoScore();
+			self.gameScores.push(games);
 //			self.playerTwoGamesWon(self.playerTwoGamesWon() + 1);
-			el.playerTwoGamesWon(self.playerTwoGamesWon() + 1);			
+			el.playerTwoGamesWon(self.playerTwoGamesWon() + 1);
 			el.playerOneGamesWon(self.playerOneGamesWon());
 			self.playerOneScore(0);
 			self.playerTwoScore(0);
@@ -392,7 +401,14 @@ function viewModel () {
 		var p2sl = self.playerTwoSlider();
 		self.playerOneSlider = ko.observable(0);
 		self.playerTwoSlider = ko.observable(0);
-		$(".ui-slider-handle").animate( { left: 0, easing: 'swing' }, 150);
+		//$(".ui-slider-handle").animate( { left: 0, easing: 'swing' }, 150);
+		$(".ui-slider-handle").transition( {
+			perspective: '1000',
+			left: '0px',
+			duration: '250',
+			easing: 'snap',
+			complete : function() {}
+		});
 		
 		sliderMoved = false;
 	}
@@ -445,7 +461,7 @@ function viewModel () {
 				return("p1");
 			}
 			else if (p2 - p1 >= 2) {
-				return ("p2");
+				return("p2");
 			}
 		}
 		else return;
@@ -461,6 +477,10 @@ function viewModel () {
 			
 //			self.scoreBoard.splice(x - 1, 1);
 			self.scoreBoard.pop();
+			
+			if (parseInt(self.playerOneGamesWon()) + parseInt(self.playerTwoGamesWon()) < self.gameScores().length) {
+				self.gameScores.pop();
+			}
 			
 			x = self.scoreBoard().length;
 			
@@ -536,8 +556,145 @@ function viewModel () {
 		
 	}
 	
-	self.openCallsPopup = function() {
-		$("#calls").popup( "open", { transition: "slidedown", shadow: true, positionTo: "#doomings" });
+	var callsVis = false;
+	
+	self.toggleCallsPopup = function() {
+		//$("#calls").popup( "open", { transition: "slidedown", shadow: true, positionTo: "#doomings" });
+		
+		
+		var tuom = document.getElementById("tuom");
+		
+//					$('#scrollPad').css('height', '158px');
+//			$('#tuom').css('top', '66px')
+		
+		var sc_height;
+		if (self.launchedFromHome() === true)
+			sc_height = 66;
+		else sc_height = 44;
+		
+			
+		if (callsVis == false) {
+			
+			var h = sc_height + 90 +'px';
+		
+			$("#tuom").css( { transformOrigin: '100% 0'})
+			.transition( {
+				perspective: '1000',
+				y: '-260px',
+				duration: '0',
+				complete: function() {
+					tuom.style.display = 'block';
+				}
+			}).transition( {
+				perspective: '1000',
+				y: '0px',
+				duration: '350',
+				easing: 'snap',
+				complete : function() {}
+			});
+			
+			
+			$("#tuom_arrow").transition( {
+				rotate: '90deg',
+				easing: 'ease'
+			});
+			
+			$("#scrollPad").transition( {
+				height: h,
+				complete: function() {
+					callsVis = true;
+					
+					setTimeout(function () {
+						if ($.mobile.activePage[0].id in self.myScroll) {
+							self.myScroll['main'].refresh();
+			//						self.myScroll['main'].scrollTo(0, 23, 50, true);
+							var wrapH = $("#scroller").height();
+							var y = self.myScroll['main'].maxScrollY;
+			//				console.log("computed refresh");
+									
+							if (y < 0) {
+								self.myScroll['main'].scrollTo(0, self.myScroll['main'].maxScrollY, 150);
+								}
+							}
+					}, 0);
+					
+				}
+			});
+		}
+		
+		else {
+			$("#tuom").css( { transformOrigin: '100% 0'})
+			.transition( {
+				perspective: '1000',
+				y: '-260px',
+				duration: '350',
+				easing: 'ease',
+				complete: function() {
+					//$('#scrollPad').css('height', '44px');
+					//callsVis = false;
+					tuom.style.display = 'none';
+				}
+			});
+			
+			$("#tuom_arrow").transition( {
+				rotate: '0deg',
+				easing: 'ease'
+			});
+			
+			$("#scrollPad").transition({
+				height: sc_height,
+				complete: function() {
+					callsVis = false;
+					
+					
+					setTimeout(function () {
+						if ($.mobile.activePage[0].id in self.myScroll) {
+							self.myScroll['main'].refresh();
+			//						self.myScroll['main'].scrollTo(0, 23, 50, true);
+							var wrapH = $("#scroller").height();
+							var y = self.myScroll['main'].maxScrollY;
+			//				console.log("computed refresh");
+									
+							if (y < 0) {
+								self.myScroll['main'].scrollTo(0, self.myScroll['main'].maxScrollY, 150);
+								}
+							}
+					}, 0);
+					
+					
+					
+					
+					
+				}
+			});
+			
+		}
+				
+			
+/*			complete: function() {
+				tuom.style.visibility = 'visible';
+			}
+		
+		}).transition( {
+			perspective: '1000',
+			rotateX: '0deg',
+			duration: 350
+		}); */
+		
+		/*$(sc).transition({ 
+			perspective: '0px',
+			rotateY: '90deg',
+			duration: 350,
+			complete: function() { 
+				stats.style.display = 'block';
+				holedata.style.display = 'none';
+			}
+		}).
+		transition( {
+			perspective: '0px',
+			rotateY: '0deg',
+			duration: 250
+		}); */
 		
 	};
 	
@@ -672,10 +829,8 @@ $(document).on('pageinit', function() {
 					vScroll        : true,
 					hScrollbar     : false,
 					vScrollbar     : true,
-					fixedScrollbar : true,
-					fadeScrollbar  : false,
-					hideScrollbar  : false,
 					bounce         : true,
+					hideScrollbar	: true,
 					momentum       : true,
 					lockDirection  : true
 				});
