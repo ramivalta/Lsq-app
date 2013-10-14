@@ -527,20 +527,20 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00a00200', e
 	border-left-style: solid;
 	border-left-color: rgba(19,142,0,1);
 	border-right-color: rgba(19,142,0,1);	
-	border-right-width: 4px;
-	border-left-width: 4px;
+	border-right-width: 3px;
+	border-left-width: 3px;
 }
 
 .noLetBtn {
-	border-left-width: 4px;
-	border-right-width: 4px;
+	border-left-width: 3px;
+	border-right-width: 3px;
 	border-left-color: rgba(255,116,0,1);
 	border-right-color: rgba(255,116,0,1);
 }
 
 .strokeBtn {
-	border-left-width: 4px;
-	border-right-width: 4px;
+	border-left-width: 3px;
+	border-right-width: 3px;
 	border-left-color: rgba(160,2,0,1);
 	border-right-color: rgba(160,2,0,1);
 	
