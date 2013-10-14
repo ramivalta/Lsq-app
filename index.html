@@ -104,254 +104,201 @@
 				</thead> -->
 	
 				<tbody data-bind="foreach: scoreBoard">
-					<tr>
-					<!-- ko if: ($index() === ($root.scoreBoard().length - 1)) -->
-						<!-- ko if: $root.matchSet === true -->
-							<td class="scoreCell scoreCellGameOver"></td>
+					<tr data-bind="visible: ($index() === ($root.scoreBoard().length - 1))">
+					<!-- asdko if: ($index() === ($root.scoreBoard().length - 1)) -->
+						
+						<!-- matchSet == true -->
+						
+							<td class="scoreCell scoreCellGameOver" data-bind="visible: $root.matchSet == true"></td>
 							
-							<td class="scoreCell scoreCellGameOver" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerOneScore, visible: $root.matchSet  == true" style="text-align: center; font-size: 150%"></td>
 
-							<td class="scoreCell scoreCellGames scoreCellGameOver">(
+							<td class="scoreCell scoreCellGames scoreCellGameOver" data-bind="visible: $root.matchSet  == true">(
 									<span data-bind="text: playerOneGamesWon"></span>
 									-
 									<span data-bind="text: playerTwoGamesWon"></span> )
 							</td>
 							
-							<td class="scoreCell scoreCellGameOver" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerTwoScore, visible: $root.matchSet  == true" style="text-align: center; font-size: 150%"></td>
 							
-							<td class="scoreCell scoreCellGameOver">
+							<td class="scoreCell scoreCellGameOver" data-bind="visible: $root.matchSet  == true">
 							</td>
-							
-						<!-- /ko -->
 						
-						<!-- ko if: gameOver() === true -->
-							<td class="scoreCell scoreCellGameOver scoreCellCall"  data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }">
-								<!-- ko if: playerOneYesLet() === true -->
-									<div>Yes let</div>
-								<!-- /ko -->
-								<!-- ko if: playerOneNoLet() === true -->
-									<div>No let</div>
-								<!-- /ko -->
-								<!-- ko if: playerOneStroke() === true -->
-									<div>Stroke</div>
-								<!-- /ko -->							
+						<!-- /matchSet -->
+						
+						<!-- gameOver == true -->
+						
+							<td class="scoreCell scoreCellGameOver scoreCellCall"  data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }, visible: gameOver() == true">
+								<div data-bind="visible: playerOneYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerOneNoLet() == true">No let</div>
+								<div data-bind="visible: playerOneStroke() == true">Stroke</div>
 							</td>							
 							
-							<td class="scoreCell scoreCellGameOver" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>							
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerOneScore, visible: gameOver() == true" style="text-align: center; font-size: 150%" ></td>							
 
-							<td class="scoreCell scoreCellGames scoreCellGameOver">(
+							<td class="scoreCell scoreCellGames scoreCellGameOver" data-bind="visible: gameOver() == true">(
 								<span data-bind="text: playerOneGamesWon"></span>
 								-
 								<span data-bind="text: playerTwoGamesWon"></span> )
 							</td>
 							
-							<td class="scoreCell scoreCellGameOver" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>							
+							<td class="scoreCell scoreCellGameOver" data-bind="text: playerTwoScore, visible: gameOver() == true" style="text-align: center; font-size: 150%"></td>							
 							
-							<td class="scoreCell scoreCellGameOver scoreCellCall" data-bind="css: { scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }" >
-								<!-- ko if: playerTwoYesLet() === true -->
-									<div>Yes let</div>
-								<!-- /ko -->
-								<!-- ko if: playerTwoNoLet() === true -->									
-									<div>No let</div>
-								<!-- /ko -->
-								<!-- ko if: playerTwoStroke() === true -->									
-									<div>Stroke</div>
-								<!-- /ko -->									
+							<td class="scoreCell scoreCellGameOver scoreCellCall" data-bind="css: { scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }, visible: gameOver() == true" >
+
+								<div data-bind="visible: playerTwoYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerTwoNoLet() == true">No let</div>
+								<div data-bind="visible: playerTwoStroke() == true">Stroke</div>								
 							
 							</td>							
-						<!-- /ko -->
+						<!-- /gameOver -->
 							
-						<!-- ko if: gameOver() === false -->
+						<!-- gameOver == false -->
 						
-							<!-- ko if: gameBall() === true -->
+							<!-- gameBall == true -->
 
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall scoreCellCall" data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }">
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall scoreCellCall" data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }, visible: gameOver() == false && gameBall() == true">
 
-									<!-- ko if: playerOneYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneNoLet() === true -->									
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneStroke() === true -->									
-										<div>Stroke</div>
-									<!-- /ko -->
+								<div data-bind="visible: playerOneYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerOneNoLet() == true">No let</div>
+								<div data-bind="visible: playerOneStroke() == true">Stroke</div>
+									
 								</td>
 								
-								<td class="scoreCell scoreCellLatest scoreCellGameBall" data-bind="text: playerOneScore" style="text-align: center; font-size: 150%"></td>								
+								<td class="scoreCell scoreCellLatest scoreCellGameBall" data-bind="text: playerOneScore, visible: gameOver() == false && gameBall() == true" style="text-align: center; font-size: 150%"></td>								
 									
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall">
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall" data-bind="visible: gameOver() == false && gameBall() == true">
 									-
 								</td>	
 								
-								<td class="scoreCell scoreCellLatest scoreCellGameBall" data-bind="text: playerTwoScore" style="text-align: center; font-size: 150%"></td>								
+								<td class="scoreCell scoreCellLatest scoreCellGameBall" data-bind="text: playerTwoScore, visible: gameOver() == false && gameBall() == true" style="text-align: center; font-size: 150%"></td>								
 								
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall scoreCellCall" data-bind="css: {  scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }">
-									<!-- ko if: playerTwoYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoNoLet() === true -->									
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoStroke() === true -->									
-										<div>Stroke</div>
-									<!-- /ko -->										
-								
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameBall scoreCellCall" data-bind="css: {  scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }, visible: gameOver() == false && gameBall() == true">
+									
+								<div data-bind="visible: playerTwoYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerTwoNoLet() == true">No let</div>
+								<div data-bind="visible: playerTwoStroke() == true">Stroke</div>								
 								</td>
 
-							<!-- /ko -->
+							<!-- /gameBall == true -->
 
-							<!-- ko if: gameBall() === false -->
+							<!-- gameBall == false -->
 								
-								<td class="scoreCell scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }">
-									<!-- ko if: playerOneYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneNoLet() === true -->
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneStroke() === true -->
-										<div>Stroke</div>
-									<!-- /ko -->
+								<td class="scoreCell scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }, visible: gameOver() == false && gameBall() == false">
+									
+									
+								<div data-bind="visible: playerOneYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerOneNoLet() == true">No let</div>
+								<div data-bind="visible: playerOneStroke() == true">Stroke</div>
+									
 								</td>
 
-								<td class="scoreCell scoreCellLatest" data-bind="text: playerOneScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center; font-size: 150%"></td>
+								<td class="scoreCell scoreCellLatest" data-bind="text: playerOneScore, css: { scoreCellOdd: ($index() % 2 !== 0) }, visible: gameOver() == false && gameBall() == false" style="text-align: center; font-size: 150%"></td>
 				
-								<td class="scoreCell scoreCellGames scoreCellLatest" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) }">
+								<td class="scoreCell scoreCellGames scoreCellLatest" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) }, visible: gameOver() == false && gameBall() == false">
 									-
 								</td>									
 								
-								<td class="scoreCell scoreCellLatest" data-bind="text: playerTwoScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center; font-size: 150%"></td>								
+								<td class="scoreCell scoreCellLatest" data-bind="text: playerTwoScore, css: { scoreCellOdd: ($index() % 2 !== 0) }, visible: gameOver() == false && gameBall() == false" style="text-align: center; font-size: 150%"></td>								
 								
-								<td class="scoreCell scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }">
-									<!-- ko if: playerTwoYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoNoLet() === true -->
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoStroke() === true -->
-										<div>Stroke</div>
-									<!-- /ko -->
+								<td class="scoreCell scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }, visible: gameOver() == false && gameBall() == false">
+									
+								<div data-bind="visible: playerTwoYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerTwoNoLet() == true">No let</div>
+								<div data-bind="visible: playerTwoStroke() == true">Stroke</div>								
 								</td>
 									
-							<!-- /ko -->
-						<!-- /ko -->
-					<!-- /ko -->
+							<!-- /gameBall == false -->
+						<!-- /gameOver == false -->
+					</tr>
+					<!-- asd/ko -->
 						
-					<!-- ko if: ($index() !== ($root.scoreBoard().length -1)) -->
-						<!-- ko if: gameOver() === true -->
+					<!-- asdko if: ($index() !== ($root.scoreBoard().length -1)) -->
+					<tr data-bind="visible: ($index() !== ($root.scoreBoard().length -1))">
+						<!-- gameOver == true -->
 							
-							<td class="scoreCell scoreCellLatest scoreCellGameOver scoreCellCall"  data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }">
-								<!-- ko if: playerOneYesLet() === true -->
-									<div>Yes let</div>
-								<!-- /ko -->
-								<!-- ko if: playerOneNoLet() === true -->
-									<div>No let</div>
-								<!-- /ko -->
-								<!-- ko if: playerOneStroke() === true -->
-									<div>Stroke</div>
-								<!-- /ko -->
+							<td class="scoreCell scoreCellLatest scoreCellGameOver scoreCellCall"  data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }, visible: gameOver() == true">
+
+								<div data-bind="visible: playerOneYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerOneNoLet() == true">No let</div>
+								<div data-bind="visible: playerOneStroke() == true">Stroke</div>
+								
 							</td>
 
-							<td class="scoreCell scoreCellLatest scoreCellGameOver" data-bind="text: playerOneScore" style="text-align: center"></td>
+							<td class="scoreCell scoreCellLatest scoreCellGameOver" data-bind="text: playerOneScore, visible: gameOver() == true" style="text-align: center"></td>
 		
-							<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameOver">
+							<td class="scoreCell scoreCellGames scoreCellLatest scoreCellGameOver" data-bind="visible: gameOver() == true">
 								( <span data-bind="text: playerOneGamesWon"></span>
 									-
 								<span data-bind="text: playerTwoGamesWon"></span> )
 							</td>
 
-							<td class="scoreCell scoreCellLatest scoreCellGameOver" data-bind="text: playerTwoScore" style="text-align: center"></td>
+							<td class="scoreCell scoreCellLatest scoreCellGameOver" data-bind="text: playerTwoScore, visible: gameOver() == true" style="text-align: center"></td>
 							
-							<td class="scoreCell scoreCellLatest scoreCellGameOver scoreCellCall" data-bind="css: { scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }">
-								<!-- ko if: playerTwoYesLet() === true -->
-									<div>Yes let</div>
-								<!-- /ko -->
-								<!-- ko if: playerTwoNoLet() === true -->															<div>No let</div>
-								<!-- /ko -->
-								<!-- ko if: playerTwoStroke() === true -->															<div>Stroke</div>
-								<!-- /ko -->									
+							<td class="scoreCell scoreCellLatest scoreCellGameOver scoreCellCall" data-bind="css: { scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }, visible: gameOver() == true">
+								
+								<div data-bind="visible: playerTwoYesLet() == true">Yes let</div>
+								<div data-bind="visible: playerTwoNoLet() == true">No let</div>
+								<div data-bind="visible: playerTwoStroke() == true">Stroke</div>							
 							</td>							
 
-						<!-- /ko -->
+						<!-- /gameOver == true  -->
 							
-						<!-- ko if: gameOver() === false -->
-							<!-- ko if: gameBall() === true -->
+						<!-- gameOver == false -->
+							<!-- gameBall == true -->
 								
-								<td class="scoreCell scoreCellGameBall scoreCellCall" data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }">
-									<!-- ko if: playerOneYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneNoLet() === true -->																			<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneStroke() === true -->																			<div>Stroke</div>
-									<!-- /ko -->
-									</td>								
+								<td class="scoreCell scoreCellGameBall scoreCellCall" data-bind="css: {  scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }, visible: gameOver() == false && gameBall() == true">
+										
+									<div data-bind="visible: playerOneYesLet() == true">Yes let</div>
+									<div data-bind="visible: playerOneNoLet() == true">No let</div>
+									<div data-bind="visible: playerOneStroke() == true">Stroke</div>
+								
+								</td>								
 
-								<td class="scoreCell scoreCellGameBall" data-bind="text: playerOneScore" style="text-align: center"></td>
+								<td class="scoreCell scoreCellGameBall" data-bind="text: playerOneScore, visible: gameOver() == false && gameBall() == true" style="text-align: center"></td>
 
-								<td class="scoreCell scoreCellGames scoreCellGameBall"> -
+								<td class="scoreCell scoreCellGames scoreCellGameBall" data-bind="visible: gameOver() == false && gameBall() == true"> -
 								</td>					
 
-								<td class="scoreCell scoreCellGameBall" data-bind="text: playerTwoScore" style="text-align: center"></td>
+								<td class="scoreCell scoreCellGameBall" data-bind="text: playerTwoScore, visible: gameOver() == false && gameBall() == true" style="text-align: center"></td>
 
-								<td class="scoreCell scoreCellGameBall scoreCellCall" data-bind="css: { scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }">
+								<td class="scoreCell scoreCellGameBall scoreCellCall" data-bind="css: { scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke }, visible: gameOver() == false && gameBall() == true">
 								
-									<!-- ko if: playerTwoYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoNoLet() === true -->
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoStroke() === true -->
-										<div>Stroke</div>
-									<!-- /ko -->
+									<div data-bind="visible: playerTwoYesLet() == true">Yes let</div>
+									<div data-bind="visible: playerTwoNoLet() == true">No let</div>
+									<div data-bind="visible: playerTwoStroke() == true">Stroke</div>							
 								</td>
 
-							<!-- /ko -->
+							<!-- /gameBall == true -->
 							
-							<!-- ko if: gameBall() === false -->
+							<!-- gameBall == false -->
 								
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke } " >
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerOneYesLet : playerOneYesLet, scoreCellPlayerOneNoLet : playerOneNoLet, scoreCellPlayerOneStroke : playerOneStroke }, visible: gameOver() == false && gameBall() == false" >
 
-									<!-- ko if: playerOneYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneNoLet() === true -->
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerOneStroke() === true -->
-										<div>Stroke</div>
-									<!-- /ko -->
-								</td>
-								
-								<td class="scoreCell" data-bind="text: playerOneScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center"></td>
+									<div data-bind="visible: playerOneYesLet() == true">Yes let</div>
+									<div data-bind="visible: playerOneNoLet() == true">No let</div>
+									<div data-bind="visible: playerOneStroke() == true">Stroke</div>
 									
-								<td class="scoreCell scoreCellGames" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) } "> -
+								</td>
+								
+								<td class="scoreCell" data-bind="text: playerOneScore, css: { scoreCellOdd: ($index() % 2 !== 0) }, visible: gameOver() == false && gameBall() == false" style="text-align: center"></td>
+									
+								<td class="scoreCell scoreCellGames" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0) }, visible: gameOver() == false && gameBall() == false"> -
 								</td>
 
-								<td class="scoreCell" data-bind="text: playerTwoScore, css: { scoreCellOdd: ($index() % 2 !== 0) }" style="text-align: center"></td>
+								<td class="scoreCell" data-bind="text: playerTwoScore, css: { scoreCellOdd: ($index() % 2 !== 0) }, , visible: gameOver() == false && gameBall() == false" style="text-align: center"></td>
 								
-								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke } ">
+								<td class="scoreCell scoreCellGames scoreCellLatest scoreCellCall" data-bind="css: { scoreCellOdd: ($index() % 2 !== 0), scoreCellPlayerTwoYesLet : playerTwoYesLet, scoreCellPlayerTwoNoLet : playerTwoNoLet, scoreCellPlayerTwoStroke : playerTwoStroke } , visible: gameOver() == false && gameBall() == false">
 
-									<!-- ko if: playerTwoYesLet() === true -->
-										<div>Yes let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoNoLet() === true -->
-										<div>No let</div>
-									<!-- /ko -->
-									<!-- ko if: playerTwoStroke() === true -->
-										<div>Stroke</div>
-									<!-- /ko -->
+									<div data-bind="visible: playerTwoYesLet() == true">Yes let</div>
+									<div data-bind="visible: playerTwoNoLet() == true">No let</div>
+									<div data-bind="visible: playerTwoStroke() == true">Stroke</div>	
 								
 								</td>
 						
-							<!-- /ko -->
-						<!-- /ko -->
-						
-					<!-- /ko -->
-					</tr>
+							<!-- /gameBall == false -->
+						<!-- asd/ko -->
+						</tr>
 
 				</tbody>
 			</table>
